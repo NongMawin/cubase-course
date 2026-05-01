@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubase 14 Pro Masterclass | โดย Mawin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00adef;
+            --bg: #0d1117;
+            --card: #161b22;
+            --text: #c9d1d9;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: -50px auto 50px;
+            padding: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        .course-info, .form-card {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #30363d;
+        }
+
+        h2 { color: var(--primary); border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+
+        ul { list-style: none; padding: 0; }
+        ul li { margin-bottom: 12px; display: flex; align-items: center; }
+        ul li::before { content: "✓"; color: var(--primary); margin-right: 10px; font-weight: bold; }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-submit:hover { background: #58a6ff; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Music Production Masterclass</h1>
+        <p>ทำเพลง มิกซ์ & มาสเตอร์ ด้วย Cubase 14 Pro</p>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <!-- รายละเอียดคอร์ส -->
+            <div class="course-info">
+                <h2>สิ่งที่คุณจะได้รับจากคอร์สนี้</h2>
+                <ul>
+                    <li>เทคนิคการจัดวาง Project ใน Cubase 14 Pro</li>
+                    <li>การมิกซ์เสียงเครื่องดนตรีไทย (ระนาด, ขลุ่ย, ผิน) ให้ทันสมัย</li>
+                    <li>เทคนิคการใช้ Audio Isolation แยกเสียงร้องและดนตรี</li>
+                    <li>การใช้ปลั๊กอินระดับโลก (Pro-Q 3, EZBass)</li>
+                    <li>Mastering งานเพลงให้ได้มาตรฐานสากล</li>
+                </ul>
+            </div>
+
+            <!-- ฟอร์มสมัครเรียน -->
+            <div class="form-card">
+                <h2>สมัครเรียนทันที</h2>
+                <form action="https://api.web3forms.com/submit" method="POST">
+                    <!-- นำ Access Key ที่ได้จากอีเมล mawinnew52@gmail.com มาวางตรงนี้ครับ -->
+                    <input type="hidden" name="access_key" value="be696d83-7121-444b-b7e9-93c341bbe378">
+                    <input type="hidden" name="redirect" value="dashboard.html"> 
+                    <label>ชื่อผู้สมัคร</label>
+                    <input type="text" name="name" placeholder="ชื่อ-นามสกุล" required>
+
+                    <label>อีเมล</label>
+                    <input type="email" name="email" placeholder="email@example.com" required>
+
+                    <label>ระดับความรู้พื้นฐาน</label>
+                    <select name="level">
+                        <option value="beginner">ไม่มีพื้นฐาน (เริ่มจากศูนย์)</option>
+                        <option value="intermediate">พอใช้ Cubase ได้บ้าง</option>
+                        <option value="advanced">เน้นเจาะลึกการ Mix & Master</option>
+                    </select>
+
+                    <button type="submit" class="btn-submit">ลงทะเบียนเรียน</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
