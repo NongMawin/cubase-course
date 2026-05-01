@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ตั้งค่าบัญชี | Cubase Masterclass</title>
+    <style>
+        body { font-family: Tahoma; background: #05070a; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #30363d; width: 350px; text-align: center; }
+        input { width: 100%; padding: 12px; margin-bottom: 10px; background: #0d1117; color: white; border: 1px solid #30363d; border-radius: 8px; box-sizing: border-box; }
+        .btn-save { width: 100%; padding: 12px; background: #2ea043; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .btn-del { width: 100%; padding: 10px; background: none; color: #f85149; border: 1px solid #f85149; margin-top: 20px; cursor: pointer; border-radius: 8px; width: 100%; }
+        
+        /* Custom Modal Styles */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .modal-card { background: #161b22; padding: 30px; border-radius: 15px; border: 1px solid #f85149; text-align: center; width: 320px; box-shadow: 0 0 30px rgba(248, 81, 73, 0.2); }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-cancel { flex: 1; padding: 10px; background: #30363d; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        .btn-confirm { flex: 1; padding: 10px; background: #f85149; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h3>ตั้งค่าบัญชี</h3>
+        <form onsubmit="changePass(event)">
+            <input type="password" id="old-p" placeholder="รหัสเดิม" required>
+            <input type="password" id="new-p" placeholder="รหัสใหม่" required>
+            <button type="submit" class="btn-save">บันทึกรหัสใหม่</button>
+        </form>
+        <button class="btn-del" onclick="showModal()">ลบบัญชีผู้ใช้งาน</button>
+        <p><a href="home.html" style="color: #8b949e; font-size: 13px; text-decoration: none;">กลับหน้าหลัก</a></p>
+    </div>
+
+    <!-- Custom Modal แทนระบบเดิมของ Browser -->
+    <div id="delete-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 style="color: #f85149;">ยืนยันการลบ?</h3>
+            <p style="color: #8b949e;">ข้อมูลทั้งหมดของคุณจะหายไปและไม่สามารถกู้คืนได้</p>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
+                <button class="btn-confirm" onclick="finalDelete()">ยืนยันลบ</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changePass(e) {
+            e.preventDefault();
+            if(document.getElementById('old-p').value === localStorage.getItem('savedPassword')) {
+                localStorage.setItem('savedPassword', document.getElementById('new-p').value);
+                alert("เปลี่ยนรหัสสำเร็จ!");
+                window.location.href = "home.html";
+            } else { alert("รหัสเดิมไม่ถูกต้อง"); }
+        }
+        function showModal() { document.getElementById('delete-modal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('delete-modal').style.display = 'none'; }
+        function finalDelete() { localStorage.clear(); window.location.href = "index.html"; }
+    </script>
+</body>
+</html>

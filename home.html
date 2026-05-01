@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Cubase Masterclass</title>
+    <link rel="icon" type="image/png" href="image_5a483c.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2ea043; --bg: #0d1117; --card: #161b22; --border: #30363d;
+            --text-main: #c9d1d9; --text-dim: #8b949e; --blue-admin: #00adef;
+        }
+
+        /* วางทับส่วน body เดิมตรงนี้ครับ */
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: linear-gradient(rgba(5, 7, 10, 0.85), rgba(5, 7, 10, 0.85)), 
+                        url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-main); 
+            margin: 0; 
+        }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 70px; background: rgba(22, 27, 34, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .user-profile { display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 6px 12px; border-radius: 50px; transition: 0.2s; }
+        .user-profile:hover { background: var(--border); }
+        .user-avatar { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--primary); object-fit: cover; }
+
+        .dropdown { position: absolute; top: 75px; right: 5%; width: 260px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; display: none; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; }
+        .dropdown.active { display: flex; }
+        .dropdown-header { padding: 15px; background: #0d1117; border-bottom: 1px solid var(--border); }
+        .dropdown-item { padding: 12px 20px; color: var(--text-main); text-decoration: none; font-size: 14px; border: none; background: none; text-align: left; cursor: pointer; display: flex; align-items: center; gap: 12px; }
+        .dropdown-item:hover { background: var(--border); }
+
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .video-card { background: rgba(22, 27, 34, 0.85); backdrop-filter: blur(15px); padding: 25px; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background: #000; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        
+        .contact-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .btn-group { display: flex; gap: 15px; }
+        .btn-contact { padding: 10px 25px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .btn-facebook { background: #1877f2; }
+        .btn-youtube { background: #ff0000; }
+        .btn-contact:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        .buy-course-footer { width: 100%; max-width: 420px; padding: 20px; background: rgba(46, 160, 67, 0.1); border: 1px dashed var(--primary); border-radius: 15px; text-align: center; }
+        .btn-buy-fb { display: inline-flex; align-items: center; gap: 10px; background: #1877f2; color: white; text-decoration: none; padding: 12px 25px; border-radius: 50px; font-weight: bold; margin-top: 10px; box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div style="color: var(--primary); font-weight: 800; letter-spacing: 1px;">CUBASE MASTERCLASS</div>
+        <div class="user-profile" onclick="toggleDropdown()">
+            <span id="display-name" style="font-weight: 500;">...</span>
+            <img id="nav-avatar" class="user-avatar" src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+        </div>
+        
+        <div class="dropdown" id="userDropdown">
+            <div class="dropdown-header">
+                <small style="color: var(--text-dim);">เปลี่ยนรูปโปรไฟล์</small>
+                <input type="file" onchange="uploadImage(event)" style="font-size: 10px; width: 100%; margin-top: 8px; color: var(--text-dim);">
+            </div>
+            
+            <div id="admin-zone"></div> 
+
+            <button class="dropdown-item" onclick="location.href='settings.html'">
+                <i class="fas fa-cog"></i> ตั้งค่าบัญชี
+            </button>
+            
+            <button class="dropdown-item" onclick="logout()" style="color: #f85149; border-top: 1px solid var(--border);">
+                <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="video-card">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/RmmYy0buHCY" allowfullscreen></iframe>
+            </div>
+            
+            <div style="text-align: center; margin-top: 25px;">
+                <p style="color: var(--primary); margin-bottom: 5px;">ยินดีต้อนรับคุณ <span id="welcome-name">...</span></p>
+                <h1 style="margin-top: 0;">EP.1 การตั้งค่าเริ่มต้นใน Cubase 14</h1>
+            </div>
+
+            <div class="contact-section">
+                <div class="btn-group">
+                    <a href="https://www.facebook.com/naruedom.sonsuk" target="_blank" class="btn-contact btn-facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://www.youtube.com/@NaruedomSonsuk" target="_blank" class="btn-contact btn-youtube"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+
+                <div class="buy-course-footer">
+                    <h3 style="margin: 0; color: var(--primary); font-size: 1.1rem;">สนใจซื้อคอร์สเรียนเพิ่มเติม ติดต่อได้ที่</h3>
+                    <a href="https://www.facebook.com/naruedom.sonsuk" target="_blank" class="btn-buy-fb">
+                        <i class="fab fa-facebook" style="font-size: 1.3rem;"></i>
+                        ทักแชท Facebook เพื่อสั่งซื้อ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const myAdminGmail = "mawinnew52@gmail.com";
+
+        if (localStorage.getItem('isLoggedIn') !== 'true') window.location.href = "index.html";
+
+        const name = localStorage.getItem('studentName') || 'นักเรียน';
+        document.getElementById('display-name').innerText = name;
+        document.getElementById('welcome-name').innerText = name;
+
+        if (localStorage.getItem('savedEmail') === myAdminGmail) {
+            document.getElementById('admin-zone').innerHTML = `
+                <button class="dropdown-item" onclick="location.href='admin.html'" style="color: var(--blue-admin);">
+                    <i class="fas fa-user-shield"></i> แดชบอร์ดแอดมิน
+                </button>
+            `;
+        }
+
+        if (localStorage.getItem('pPic')) {
+            document.getElementById('nav-avatar').src = localStorage.getItem('pPic');
+        }
+
+        function toggleDropdown() { document.getElementById('userDropdown').classList.toggle('active'); }
+        function logout() { localStorage.removeItem('isLoggedIn'); window.location.href = "index.html"; }
+        function uploadImage(e) {
+            const reader = new FileReader();
+            reader.onload = function() { localStorage.setItem('pPic', reader.result); location.reload(); }
+            reader.readAsDataURL(e.target.files[0]);
+        }
+        window.onclick = function(event) { if (!event.target.closest('.user-profile')) document.getElementById('userDropdown').classList.remove('active'); }
+    </script>
+</body>
+</html>
